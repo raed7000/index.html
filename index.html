@@ -1,0 +1,174 @@
+<html><head><base href="http://example.com/">
+<meta charset="UTF-8">
+<style>
+  body {
+    font-family: 'Comic Sans MS', cursive;
+    background: linear-gradient(135deg, #ffd1dc, #f7cac9);
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+  }
+
+  .game-container {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    max-width: 800px;
+    text-align: center;
+  }
+
+  .mom-character {
+    width: 200px;
+    height: 200px;
+    margin: 20px auto;
+    cursor: pointer;
+    transition: transform 0.3s;
+  }
+
+  .mom-character:hover {
+    transform: scale(1.1);
+  }
+
+  .message {
+    display: none;
+    padding: 20px;
+    background: rgba(255,255,255,0.9);
+    border-radius: 10px;
+    margin-top: 20px;
+    line-height: 1.6;
+    animation: fadeIn 1s;
+  }
+
+  .beat-btn {
+    background: #ff6b6b;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .beat-btn:hover {
+    background: #ff4f4f;
+    transform: scale(1.05);
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .hearts {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  .personal-message {
+    margin-top: 20px;
+    padding: 20px;
+    background: #fff1f1;
+    border-radius: 10px;
+    border: 2px dashed #ff6b6b;
+  }
+</style>
+</head>
+<body>
+
+<div class="hearts"></div>
+
+<div class="game-container">
+  <h1>❤️ Hey Beautiful! ❤️</h1>
+  
+  <svg class="mom-character" viewBox="0 0 100 100">
+    <circle cx="50" cy="30" r="20" fill="#FFB6C1"/>
+    <rect x="30" y="50" width="40" height="40" fill="#FF69B4"/>
+    <circle cx="40" cy="25" r="5" fill="black"/>
+    <circle cx="60" cy="25" r="5" fill="black"/>
+    <path d="M 40 35 Q 50 45 60 35" fill="none" stroke="black" stroke-width="2"/>
+  </svg>
+
+  <p>This is your mom! What would you like to do?</p>
+  <button class="beat-btn">Beat Mom!</button>
+
+  <div class="message">
+    <h2>💖 Wait! Read this first! 💖</h2>
+    <p>Hey sweetheart! I know O levels are really tough right now, and sometimes it feels like too much pressure, especially from mom. But here's something you need to know:</p>
+    
+    <p>Your mom might seem harsh, but it's because she believes in you SO much! She sees all the amazing potential in you that I see too. You're brilliant, determined, and capable of achieving anything you set your mind to! 💫</p>
+
+    <p>Remember:</p>
+    <ul>
+      <li>You're stronger than you think</li>
+      <li>This is just a temporary phase</li>
+      <li>Your worth isn't measured by your grades</li>
+      <li>We all love you unconditionally</li>
+    </ul>
+
+    <p>Instead of getting angry, take deep breaths, stay focused, and remember that both your mom and I are your biggest cheerleaders! We're here to support you through this journey. 🌟</p>
+
+    <div class="personal-message">
+      <p>And even if keo na thake me always with u in ur toughest times and easiest ones too i love you honey and ik u r going thru a tough time tai chao na ami ashi and i hurted u but im sorry love i really am i hope u can forgive me just this once and come back to me and i swear ill keep my baby safe with me. I Love You so much jaan u will always be My cutu Maliha 💝</p>
+    </div>
+
+    <div class="cheerleaders">
+      <svg width="50" height="50" viewBox="0 0 100 100" style="display:inline-block">
+        <circle cx="50" cy="50" r="40" fill="#FFD700"/>
+        <circle cx="35" cy="40" r="5" fill="black"/>
+        <circle cx="65" cy="40" r="5" fill="black"/>
+        <path d="M 30 60 Q 50 80 70 60" fill="none" stroke="black" stroke-width="3"/>
+      </svg>
+    </div>
+
+    <p>You got this, baby! I believe in you! 💕</p>
+  </div>
+</div>
+
+<script>
+const hearts = document.querySelector('.hearts');
+const beatBtn = document.querySelector('.beat-btn');
+const message = document.querySelector('.message');
+
+function createHeart() {
+  const heart = document.createElement('div');
+  heart.innerHTML = '💖';
+  heart.style.position = 'absolute';
+  heart.style.fontSize = Math.random() * 20 + 10 + 'px';
+  heart.style.left = Math.random() * 100 + 'vw';
+  heart.style.top = -20 + 'px';
+  heart.style.transition = 'all ' + (Math.random() * 2 + 3) + 's linear';
+  hearts.appendChild(heart);
+
+  setTimeout(() => {
+    heart.style.top = '120vh';
+    heart.style.transform = 'rotate(' + (Math.random() * 360) + 'deg)';
+  }, 100);
+
+  setTimeout(() => {
+    hearts.removeChild(heart);
+  }, 5000);
+}
+
+setInterval(createHeart, 300);
+
+beatBtn.addEventListener('click', () => {
+  message.style.display = 'block';
+  beatBtn.style.display = 'none';
+  
+  // Create more hearts when the message appears
+  for(let i = 0; i < 20; i++) {
+    setTimeout(createHeart, i * 100);
+  }
+});
+</script>
+
+</body>
+</html>
